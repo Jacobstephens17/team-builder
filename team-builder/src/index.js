@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import styled from 'styled-components'
 
 const teamMembers = [{ 
   firstName:'Jacob',
@@ -16,6 +17,38 @@ const initialState = {
   email:'', 
   role:'',
 }
+
+const StyledPlayerCard = styled.div`
+display:flex;
+flex:wrap;
+flex-direction:column;
+align-items:center;
+border:1px red solid;
+width:75%;
+margin:2rem;
+`
+
+const StyledPage = styled.div`
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+max-width:100%;
+width:100%;
+
+
+`
+
+const CardLayout = styled.div`
+max-width:100%;
+display:flex;
+flex:wrap;
+justify-content:space-around;
+flex-direction:row;
+
+`
+
+
 
 function SimpleTeam() {
   
@@ -52,12 +85,13 @@ const onChange = (event) =>{
 }
   return (
 
-    <div>
+    <StyledPage>
       <h2>Current Team</h2>
 
+      <CardLayout>
       {members.map((member, key) => {
         return (
-          <div key={key}>
+          <StyledPlayerCard key={key}>
             <h2>
               Name: {member.firstName} {member.lastName}
             </h2>
@@ -67,10 +101,10 @@ const onChange = (event) =>{
             <h3>
               Role: {member.role}
             </h3>
-          </div>
+          </StyledPlayerCard>
         );
       })}
-
+      </CardLayout>   
       
       <h1>Add Team Member Below</h1>
 
@@ -82,7 +116,6 @@ const onChange = (event) =>{
           value={members.firstName}
           onChange={onChange}
           >
-            
         </input>
 
         <input
@@ -114,11 +147,9 @@ const onChange = (event) =>{
           <option>Web Developer</option>
           <option>Faculty Member</option>
         </select>
-
         <button>Submit</button>
       </form>
-
-    </div>
+    </StyledPage>
   );
 }
 
